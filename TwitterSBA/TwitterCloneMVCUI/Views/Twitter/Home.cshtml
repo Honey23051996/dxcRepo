@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TwitterCloneMVCUI.Models.TweetsViewModel>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <div class="card-header">
+            <h4>@item.user_id</h4>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                @Html.Raw(item.message)
+                <br />
+                <p>Tweeted on @item.created</p>
+               
+            </blockquote>
+        </div>
+    </div>
+    <br />
+}
+
+
+
+

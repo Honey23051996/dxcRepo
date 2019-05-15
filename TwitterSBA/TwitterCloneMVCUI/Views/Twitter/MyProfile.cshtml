@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TwitterCloneMVCUI.Models.TweetsViewModel>
+
+@{
+    ViewBag.Title = "MyProfile";
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="card">
+
+        <div class="card-header">
+            <h4>@item.user_id</h4>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                @Html.Raw(item.message)
+                <br />
+                <p>Tweeted on @item.created</p>
+                <footer>
+                    @Html.ActionLink("Edit", "EditTweet", "Twitter", new { id = item.tweet_id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "DeleteTweet", "Twitter", new { id = item.tweet_id }, new { @class = "btn btn-danger" })
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    <br />
+}
+

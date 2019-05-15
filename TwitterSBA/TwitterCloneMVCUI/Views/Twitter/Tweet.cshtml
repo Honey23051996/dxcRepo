@@ -1,0 +1,55 @@
+﻿@model TwitterCloneMVCUI.Models.TweetsViewModel
+
+@{
+    ViewBag.Title = "Tweet";
+}
+
+<h2>Tweet</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.message, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.message, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create Tweet" class="btn btn-success" />
+            @Html.ActionLink("Home", "Home", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    @if (ViewBag.msg != null)
+    {
+        <div class="alert alert-primary">
+            <h4>@ViewBag.msg</h4>
+        </div>
+    }
+
+</div>
+
+   
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+}

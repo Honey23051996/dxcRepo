@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Twitter Clone</title>
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body class="p-0">
+    <div class="navbar navbar-expand-md navbar-dark bg-dark">
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                @Html.ActionLink("Twitter Clone", "Home", "Twitter", null, new { @class = "navbar-brand" })
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item pl-4"> @Html.ActionLink("My Profile", "MyProfile", "Twitter")</li>
+                <li class="nav-item pl-4">  @Html.ActionLink("New Tweet", "Tweet", "Twitter")</li>
+                <li class="nav-item pl-4">  @Html.ActionLink("Logout", "Logout", "Accounts") </li>
+
+            }
+            else
+            {
+                <li class="nav-item pl-4">@Html.ActionLink("Register", "Register", "Accounts")</li>
+                <li class="nav-item pl-4">@Html.ActionLink("Login", "Login", "Accounts")</li>
+            }
+        </ul>
+    </div> 
+    <br />
+   
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-12">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <h4>Welcome @User.Identity.Name! </h4>
+                    <h6>Following 1</h6>
+                    <h6>Followers 1</h6>
+                    
+                    <br />
+                }
+
+            </div>
+        </div>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Twitter Clone</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
